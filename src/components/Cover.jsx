@@ -9,11 +9,8 @@ export default function Cover() {
       <div className="cover-overlay" />
       <img className="cover-bg" src="/images/CTL03210.JPG" alt="Cover" />
       <div className="cover-content">
-        <h1 className="cover-title">8.3 CAO NGUYỄN AN VINH</h1>
-        <p className="cover-date">MARCH 8TH, 2026</p>
-        <a href="#gallery" className="cover-btn" onClick={handleScroll}>
-          XEM BỘ ẢNH
-        </a>
+        <h1 className="cover-title">Gia đình Son</h1>
+        <p className="cover-date">MARCH 9TH, 2026</p>
       </div>
       <div className="cover-scroll-hint">
         <span />

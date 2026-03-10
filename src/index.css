@@ -34,7 +34,6 @@ img {
   height: 100vh;
   min-height: 560px;
   display: flex;
-  align-items: center;
   justify-content: center;
   overflow: hidden;
 }
@@ -45,7 +44,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   transform: scale(1.04);
   transition: transform 8s ease;
 }
@@ -73,6 +72,7 @@ img {
   color: #fff;
   padding: 2rem;
   animation: fadeInUp 1.2s ease both;
+  margin-top: 10vh;
 }
 
 .cover-title {
@@ -138,7 +138,6 @@ img {
    GALLERY SECTION
    ========================================= */
 .gallery-section {
-  max-width: 1400px;
   margin: 0 auto;
   padding: 5rem 2rem 4rem;
 }
@@ -167,24 +166,24 @@ img {
 }
 
 .gallery-grid {
-  columns: 3 320px;
-  column-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }
 
 .gallery-item {
-  break-inside: avoid;
-  margin-bottom: 10px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  min-height: 40px;
   background: #eee;
+  aspect-ratio: 2 / 3;
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
   transition: transform 0.5s ease, opacity 0.4s ease;
   opacity: 0;
 }
@@ -238,8 +237,6 @@ img {
 }
 
 .lightbox-img-wrap {
-  max-width: 92vw;
-  max-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,15 +326,21 @@ img {
 /* =========================================
    RESPONSIVE
    ========================================= */
+@media (max-width: 1400px) {
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 9px; }
+}
+
+@media (max-width: 1024px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+}
+
 @media (max-width: 768px) {
-  .gallery-grid { columns: 2 160px; column-gap: 6px; }
-  .gallery-item { margin-bottom: 6px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .lightbox-prev { left: 0.2rem; font-size: 2.5rem; }
   .lightbox-next { right: 0.2rem; font-size: 2.5rem; }
 }
 
 @media (max-width: 480px) {
-  .gallery-grid { columns: 2 120px; column-gap: 4px; }
-  .gallery-item { margin-bottom: 4px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
   .gallery-section { padding: 3rem 1rem; }
 }

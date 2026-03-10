@@ -39,10 +39,6 @@ function GalleryItem({ fileName, index, onOpen }) {
 export default function Gallery({ images, onOpen }) {
   return (
     <section className="gallery-section" id="gallery">
-      <div className="gallery-header">
-        <h2 className="gallery-title">8.3 CAO NGUYỄN AN VINH</h2>
-        <p className="gallery-subtitle">MARCH 8TH, 2026</p>
-      </div>
       <div className="gallery-grid">
         {images.map((fileName, index) => (
           <GalleryItem
