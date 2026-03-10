@@ -1,0 +1,343 @@
+/* =========================================
+   RESET & BASE
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f9f7f5;
+  color: #2c2c2c;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================
+   COVER SECTION
+   ========================================= */
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+
+.cover:hover .cover-bg {
+  transform: scale(1);
+}
+
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.45) 60%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  z-index: 1;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.cover-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.cover-date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 2.4rem;
+  opacity: 0.88;
+}
+
+.cover-btn {
+  display: inline-block;
+  padding: 0.75rem 2.4rem;
+  border: 1px solid rgba(255,255,255,0.85);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.cover-btn:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: #fff;
+}
+
+.cover-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 2.2s infinite;
+}
+
+.cover-scroll-hint span {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-bottom: 1.5px solid rgba(255,255,255,0.7);
+  border-right: 1.5px solid rgba(255,255,255,0.7);
+  transform: rotate(45deg);
+  margin: auto;
+}
+
+/* =========================================
+   GALLERY SECTION
+   ========================================= */
+.gallery-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.gallery-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-subtitle {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.gallery-grid {
+  columns: 3 320px;
+  column-gap: 10px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  min-height: 40px;
+  background: #eee;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.gallery-item img.loaded {
+  opacity: 1;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after {
+  background: rgba(0,0,0,0.08);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #aaa;
+  border-top: 1px solid #e8e4df;
+}
+
+/* =========================================
+   LIGHTBOX
+   ========================================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.96);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease both;
+}
+
+.lightbox-img-wrap {
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+  user-select: none;
+  transition: opacity 0.18s ease;
+}
+
+.lightbox-img.fading {
+  opacity: 0;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  color: #fff;
+}
+
+.lightbox-close {
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 300;
+  z-index: 10000;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.5rem;
+  font-weight: 300;
+  padding: 0.5rem 1rem;
+  z-index: 10000;
+}
+
+.lightbox-prev { left: 0.8rem; }
+.lightbox-next { right: 0.8rem; }
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40%           { transform: translateX(-50%) translateY(10px); }
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  .gallery-grid { columns: 2 160px; column-gap: 6px; }
+  .gallery-item { margin-bottom: 6px; }
+  .lightbox-prev { left: 0.2rem; font-size: 2.5rem; }
+  .lightbox-next { right: 0.2rem; font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid { columns: 2 120px; column-gap: 4px; }
+  .gallery-item { margin-bottom: 4px; }
+  .gallery-section { padding: 3rem 1rem; }
+}
