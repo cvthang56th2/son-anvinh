@@ -3,7 +3,7 @@ import 'react-photo-album/rows.css'
 
 export default function Gallery({ images, onOpen }) {
   const photos = images.map(({ src, width, height }) => ({
-    src: `/images/${src}`,
+    src: `${import.meta.env.BASE_URL}/images/${src}`,
     width,
     height,
     alt: src.replace('.JPG', ''),
