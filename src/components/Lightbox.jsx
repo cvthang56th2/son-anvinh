@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function Lightbox({ images, index, onClose, onNext, onPrev }) {
   const [fading, setFading] = useState(false)
-  const [src, setSrc] = useState(`/images/${images[index].src}`)
+  const [src, setSrc] = useState(`${import.meta.env.BASE_URL}images/${images[index].src}`)
   const touchStartX = useRef(0)
 
   useEffect(() => {
     setFading(true)
     const t = setTimeout(() => {
-      setSrc(`/images/${images[index].src}`)
+      setSrc(`${import.meta.env.BASE_URL}images/${images[index].src}`)
       setFading(false)
     }, 180)
     return () => clearTimeout(t)
