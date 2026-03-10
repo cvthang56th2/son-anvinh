@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function Lightbox({ images, index, onClose, onNext, onPrev }) {
   const [fading, setFading] = useState(false)
-  const [src, setSrc] = useState(`/images/${images[index]}`)
+  const [src, setSrc] = useState(`/images/${images[index].src}`)
   const touchStartX = useRef(0)
 
   useEffect(() => {
     setFading(true)
     const t = setTimeout(() => {
-      setSrc(`/images/${images[index]}`)
+      setSrc(`/images/${images[index].src}`)
       setFading(false)
     }, 180)
     return () => clearTimeout(t)
@@ -39,7 +39,7 @@ export default function Lightbox({ images, index, onClose, onNext, onPrev }) {
         <img
           className={`lightbox-img${fading ? ' fading' : ''}`}
           src={src}
-          alt={images[index]}
+          alt={images[index].src}
         />
       </div>
       <div className="lightbox-counter">{index + 1} / {images.length}</div>

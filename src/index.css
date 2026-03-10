@@ -35,6 +35,7 @@ img {
   min-height: 560px;
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -44,7 +45,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
   transform: scale(1.04);
   transition: transform 8s ease;
 }
@@ -72,7 +73,6 @@ img {
   color: #fff;
   padding: 2rem;
   animation: fadeInUp 1.2s ease both;
-  margin-top: 10vh;
 }
 
 .cover-title {
@@ -165,48 +165,22 @@ img {
   color: #888;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-.gallery-item {
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  background: #eee;
-  aspect-ratio: 2 / 3;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.5s ease, opacity 0.4s ease;
+.react-photo-album--row img {
+  transition: transform 0.4s ease, opacity 0.4s ease;
   opacity: 0;
+  animation: fadePhoto 0.5s ease forwards;
 }
 
-.gallery-item img.loaded {
-  opacity: 1;
+.react-photo-album--row img:hover {
+  transform: scale(1.02);
+  z-index: 1;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
 
-.gallery-item:hover img {
-  transform: scale(1.04);
-}
-
-.gallery-item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0);
-  transition: background 0.3s ease;
-  pointer-events: none;
-}
-
-.gallery-item:hover::after {
-  background: rgba(0,0,0,0.08);
+@keyframes fadePhoto {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* =========================================
@@ -326,21 +300,12 @@ img {
 /* =========================================
    RESPONSIVE
    ========================================= */
-@media (max-width: 1400px) {
-  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 9px; }
-}
-
-@media (max-width: 1024px) {
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-}
-
 @media (max-width: 768px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .gallery-section { padding: 3rem 1rem 2rem; }
   .lightbox-prev { left: 0.2rem; font-size: 2.5rem; }
   .lightbox-next { right: 0.2rem; font-size: 2.5rem; }
 }
 
 @media (max-width: 480px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
-  .gallery-section { padding: 3rem 1rem; }
+  .gallery-section { padding: 2rem 0.5rem 1.5rem; }
 }
